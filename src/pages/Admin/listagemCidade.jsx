@@ -10,6 +10,8 @@ import { useDisclosure, useBreakpointValue } from "@chakra-ui/react";
 
 import { ButtonsCrud } from "./buttonsCrudAdmin";
 
+const controller = new AbortController();
+
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
@@ -42,6 +44,9 @@ export const CrudCity = () => {
     };
 
     getCitysData();
+    return () => {
+      controller.abort();
+    };
   }, [rows]);
 
   const isMobile = useBreakpointValue({

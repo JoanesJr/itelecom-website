@@ -6,6 +6,8 @@ const { Typography, Grid, Box, TextField, Button } = require("@mui/material");
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
+const controller = new AbortController();
+
 export const Email = ({ city }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +33,10 @@ export const Email = ({ city }) => {
     };
 
     getEmailData();
-  }, [city, id]);
+    return () => {
+      controller.abort();
+    };
+  }, [id]);
 
   const handleSubmit = async () => {
     try {

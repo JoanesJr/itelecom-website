@@ -8,6 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Switch from "@mui/material/Switch";
 import { z } from "zod";
+const controller = new AbortController();
 
 const style = {
   position: "absolute",
@@ -46,6 +47,9 @@ export const ModalPlano = ({ open, handleClose, city, selectionModel, type }) =>
       };
 
       getPlanData();
+      return () => {
+        controller.abort();
+      };
     }, [selectionModel]);
   } else {
     useEffect(() => {
@@ -58,6 +62,9 @@ export const ModalPlano = ({ open, handleClose, city, selectionModel, type }) =>
         roteador5g: true,
         tvGratis: true,
       });
+      return () => {
+        controller.abort();
+      };
     }, [selectionModel]);
   }
 

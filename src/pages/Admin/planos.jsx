@@ -59,6 +59,7 @@ const columns = [
     editable: false,
   },
 ];
+const controller = new AbortController();
 
 export const Planos = ({ city }) => {
   const [open, setOpen] = useState(false);
@@ -75,7 +76,11 @@ export const Planos = ({ city }) => {
     };
 
     getPlansData();
-  }, [rows, city]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [rows]);
 
   const isMobile = useBreakpointValue({
     base: true,

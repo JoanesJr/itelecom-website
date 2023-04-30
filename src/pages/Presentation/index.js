@@ -37,6 +37,8 @@ import bgImage from "assets/images/banner-itelecom.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
 
+const controller = new AbortController();
+
 function Presentation() {
   const [locals, setLocals] = useState([]);
 
@@ -52,7 +54,11 @@ function Presentation() {
     };
 
     getCitiesData();
-  }, [locals]);
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <>

@@ -6,6 +6,8 @@ const { Typography, Grid, Box, TextField, Button, Divider } = require("@mui/mate
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
+const controller = new AbortController();
+
 export const MPS = ({ city }) => {
   const [mp1Title, setMp1Title] = useState("");
   const [mp1Desc, setMp1Desc] = useState("");
@@ -36,7 +38,11 @@ export const MPS = ({ city }) => {
     };
 
     getEmailData();
-  }, [city, id]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [id]);
 
   const handleSubmit = async () => {
     try {

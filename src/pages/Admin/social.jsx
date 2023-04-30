@@ -5,6 +5,8 @@ const { Typography, Grid, Box, TextField, Button } = require("@mui/material");
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
+const controller = new AbortController();
+
 export const Social = ({ city }) => {
   const [instagram, setInstagram] = useState("");
   const [facebook, setFacebook] = useState("");
@@ -30,7 +32,11 @@ export const Social = ({ city }) => {
     };
 
     getSocialData();
-  }, [city, id]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [id]);
 
   const handleSubmit = async () => {
     try {

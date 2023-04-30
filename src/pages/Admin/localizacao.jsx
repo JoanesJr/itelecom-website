@@ -5,6 +5,8 @@ const { Typography, Grid, Box, TextField, Button } = require("@mui/material");
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
+const controller = new AbortController();
+
 export const Localizacao = ({ city }) => {
   const [localizacao, setLocalizacao] = useState("");
   const [address, setAddress] = useState("");
@@ -27,7 +29,11 @@ export const Localizacao = ({ city }) => {
     };
 
     getLocalizacaoData();
-  }, [city, id]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [id]);
 
   const handleSubmit = async () => {
     try {

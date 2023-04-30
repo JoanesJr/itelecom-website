@@ -44,6 +44,8 @@ import { useEffect, useState } from "react";
 import { getsocial } from "../../../firebase/cities/social";
 import { useParams } from "react-router-dom";
 
+const controller = new AbortController();
+
 function AboutUs() {
   const [social, setSocial] = useState({});
 
@@ -56,7 +58,11 @@ function AboutUs() {
     };
 
     getSocials();
-  }, [city, social]);
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <>
@@ -161,9 +167,9 @@ function AboutUs() {
       >
         {/* <Information /> */}
         <Featuring city={city} />
-        <Team social={social} />
+        <Team social={social} city={city} />
 
-        <Newsletter social={social} />
+        <Newsletter social={social} city={city} />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <CenteredFooter content={footerRoutes} socialB={social} />

@@ -16,10 +16,11 @@ import { getPlans } from "../../../../firebase/cities/planos";
 import { getsocial } from "../../../../firebase/cities/social";
 import { useParams } from "react-router-dom";
 
-function Team() {
+const controller = new AbortController();
+
+function Team({ city }) {
   const [planos, setPlanos] = useState([]);
   const [social, setSocial] = useState([]);
-  const { city } = useParams();
 
   useEffect(() => {
     const getPlansData = async () => {
@@ -28,7 +29,11 @@ function Team() {
     };
 
     getPlansData();
-  }, [planos, city]);
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <MKBox

@@ -33,6 +33,8 @@ import vodafone from "assets/images/logos/gray-logos/logo-vodafone.svg";
 import { useEffect, useState } from "react";
 import { getmps } from "../../../../firebase/cities/mps";
 
+const controller = new AbortController();
+
 function Featuring({ city }) {
   const [mp1Title, setMp1Title] = useState("");
   const [mp1Desc, setMp1Desc] = useState("");
@@ -53,7 +55,11 @@ function Featuring({ city }) {
     };
 
     getmpss();
-  }, [city, mp1Desc, mp1Title, mp2Desc, mp2Title, mp3Title, mp3Desc]);
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <MKBox component="section" pt={3} pb={8}>

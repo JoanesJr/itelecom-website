@@ -32,8 +32,9 @@ import { useEffect, useState } from "react";
 import { getlocalizacao } from "../../../../firebase/cities/localizacao";
 import { useParams } from "react-router-dom";
 
-function Newsletter({ social }) {
-  const { city } = useParams();
+const controller = new AbortController();
+
+function Newsletter({ social, city }) {
   const [address, setAddress] = useState("");
   const [localizacao, setLocalizacao] = useState("");
 
@@ -45,7 +46,10 @@ function Newsletter({ social }) {
     };
 
     getAddress();
-  }, [city, address, localizacao]);
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <MKBox component="section" pt={6} my={6}>
