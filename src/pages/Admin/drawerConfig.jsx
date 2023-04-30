@@ -22,6 +22,7 @@ import PlaceSharpIcon from "@mui/icons-material/PlaceSharp";
 import NearMeSharpIcon from "@mui/icons-material/NearMeSharp";
 import PhotoSizeSelectActualSharpIcon from "@mui/icons-material/PhotoSizeSelectActualSharp";
 import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -69,6 +70,8 @@ export const DrawerConfig = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -79,7 +82,11 @@ export const DrawerConfig = (props) => {
       <Divider />
       <List>
         {["Planos", "Parceiros", "E-mail", "Social"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem
+            key={text}
+            disablePadding
+            onClick={() => navigate(`/admin/${props.city}/config/${text.toLowerCase()}`)}
+          >
             <ListItemButton>
               <ListItemIcon>{getIconOne(index)}</ListItemIcon>
               <ListItemText primary={text} />

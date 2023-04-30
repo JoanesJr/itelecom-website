@@ -79,7 +79,6 @@ export async function updatePlans(
         city,
       });
     }
-    const idNew = uuid(); // gera um UUID v4 aleatório
   } catch (e) {
     console.error("Error adding document: ", e);
   }
