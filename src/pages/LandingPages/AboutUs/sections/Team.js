@@ -53,20 +53,20 @@ function Team() {
         </Grid>
         <Grid container spacing={3}>
           {planos.map((plano) => (
-            <Grid item xs={12} md={6} lg={4} key={plano.id}>
+            <Grid item xs={12} md={6} lg={4} key={plano?.id || ""}>
               <MKBox mb={1}>
                 <HorizontalTeamCard
                   position={{ color: "info", label: "UI Designer" }}
                   description="Artist is a term applied to a person who engages in an activity deemed to be an art."
-                  value={plano.value}
-                  mb={plano.mb}
-                  instalacaoGratis={plano.instalacaoGratis}
-                  image={plano.image}
-                  wifi={plano.wifi}
-                  roteador5g={plano.roteador5g}
-                  tvGratis={plano.tvGratis}
-                  destaque={plano.destaque}
-                  contato={social.whatsapp}
+                  value={plano?.value}
+                  mb={plano?.mb}
+                  instalacaoGratis={plano?.instalacaoGratis || ""}
+                  image={plano?.image || ""}
+                  wifi={plano?.wifi || ""}
+                  roteador5g={plano?.roteador5g || ""}
+                  tvGratis={plano?.tvGratis || ""}
+                  destaque={plano?.destaque || ""}
+                  contato={social?.whatsapp || ""}
                 />
               </MKBox>
             </Grid>

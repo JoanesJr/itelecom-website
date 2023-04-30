@@ -30,8 +30,31 @@ import netflix from "assets/images/logos/gray-logos/logo-netflix.svg";
 import pinterest from "assets/images/logos/gray-logos/logo-pinterest.svg";
 import spotify from "assets/images/logos/gray-logos/logo-spotify.svg";
 import vodafone from "assets/images/logos/gray-logos/logo-vodafone.svg";
+import { useEffect, useState } from "react";
+import { getmps } from "../../../../firebase/cities/mps";
 
-function Featuring() {
+function Featuring({ city }) {
+  const [mp1Title, setMp1Title] = useState("");
+  const [mp1Desc, setMp1Desc] = useState("");
+  const [mp2Title, setMp2Title] = useState("");
+  const [mp2Desc, setMp2Desc] = useState("");
+  const [mp3Title, setMp3Title] = useState("");
+  const [mp3Desc, setMp3Desc] = useState("");
+
+  useEffect(() => {
+    const getmpss = async () => {
+      const data = await getmps(city);
+      setMp1Desc(data[0].mp1Desc);
+      setMp1Title(data[0].mp1Title);
+      setMp2Desc(data[0].mp2Desc);
+      setMp2Title(data[0].mp2Title);
+      setMp3Desc(data[0].mp3Desc);
+      setMp3Title(data[0].mp3Title);
+    };
+
+    getmpss();
+  }, [city, mp1Desc, mp1Title, mp2Desc, mp2Title, mp3Title, mp3Desc]);
+
   return (
     <MKBox component="section" pt={3} pb={8}>
       <Container>
@@ -60,9 +83,9 @@ function Featuring() {
             <DefaultCounterCard
               count={5234}
               separator=","
-              title="Monitoramento"
+              title={mp1Title}
               type="monitoring"
-              description="Rede de alta disponibilidade"
+              description={mp1Desc}
             />
           </Grid>
           <Grid item xs={12} md={3}>
@@ -70,18 +93,18 @@ function Featuring() {
               count={3400}
               separator=","
               suffix="+"
-              title="Planos"
+              title={mp2Title}
               type="money"
-              description="Planos que cabem no seu bolso"
+              description={mp2Desc}
             />
           </Grid>
           <Grid item xs={12} md={3}>
             <DefaultCounterCard
               prefix="/"
               count={7}
-              title="Suporte"
+              title={mp3Title}
               type="support"
-              description="Plantões finais de semana e feriado"
+              description={mp3Desc}
             />
           </Grid>
         </Grid>

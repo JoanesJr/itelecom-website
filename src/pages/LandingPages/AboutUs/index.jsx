@@ -108,7 +108,7 @@ function AboutUs() {
               Nos encontre em
             </MKTypography>
             <MKBox display="flex" justifyContent="center" alignItems="center">
-              {social.facebook && (
+              {social?.facebook && (
                 <MKTypography
                   component="a"
                   variant="body1"
@@ -121,7 +121,7 @@ function AboutUs() {
                 </MKTypography>
               )}
 
-              {social.instagram && (
+              {social?.instagram && (
                 <MKTypography
                   component="a"
                   variant="body1"
@@ -134,7 +134,7 @@ function AboutUs() {
                 </MKTypography>
               )}
 
-              {social.twitter && (
+              {social?.twitter && (
                 <MKTypography
                   component="a"
                   variant="body1"
@@ -160,7 +160,7 @@ function AboutUs() {
         }}
       >
         {/* <Information /> */}
-        <Featuring />
+        <Featuring city={city} />
         <Team social={social} />
 
         <Newsletter social={social} />

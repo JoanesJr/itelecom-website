@@ -42,7 +42,7 @@ function CenteredFooter({ company, links, socials, light, socialB }) {
           <Stack display="flex" direction="row" justifyContent="center" spacing={3} mt={1} mb={3}>
             <MKTypography
               component={Link}
-              href={socialB.facebook}
+              href={socialB?.facebook}
               variant="body2"
               color={light ? "white" : "secondary"}
               fontWeight="regular"
@@ -52,7 +52,7 @@ function CenteredFooter({ company, links, socials, light, socialB }) {
 
             <MKTypography
               component={Link}
-              href={socialB.instagram}
+              href={socialB?.instagram}
               variant="body2"
               color={light ? "white" : "secondary"}
               fontWeight="regular"
@@ -62,7 +62,7 @@ function CenteredFooter({ company, links, socials, light, socialB }) {
 
             <MKTypography
               component={Link}
-              href={socialB.twitter}
+              href={socialB?.twitter}
               variant="body2"
               color={light ? "white" : "secondary"}
               fontWeight="regular"

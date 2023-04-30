@@ -56,14 +56,14 @@ function Newsletter({ social }) {
             <Grid container spacing={1} sx={{ mt: 1 }}>
               <Grid item xs={12}>
                 <MKTypography variant="body2">
-                  <span style={{ fontWeight: "bold" }}>Endereço:</span> {address}
+                  <span style={{ fontWeight: "bold" }}>Endereço:</span> {address || ""}
                 </MKTypography>
                 <MKTypography variant="body2">
                   <span style={{ fontWeight: "bold" }}>Whatsapp Suporte:</span> (73) 2154 - 5231
                 </MKTypography>
               </Grid>
               <Grid item xs={4} sx={{ mt: 2 }}>
-                <Link href={social.whatsapp} target="_blank">
+                <Link href={social?.whatsapp || ""} target="_blank">
                   <MKButton variant="gradient" color="info" sx={{ height: "100%" }}>
                     Whatsapp
                   </MKButton>
@@ -74,7 +74,7 @@ function Newsletter({ social }) {
           <Grid item xs={12} md={5} sx={{ ml: "auto" }}>
             <MKBox position="relative">
               <Box sx={{}}>
-                <ResponsiveEmbed src={localizacao} allowfullscreen />
+                <ResponsiveEmbed src={localizacao || ""} allowfullscreen />
               </Box>
             </MKBox>
           </Grid>
