@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -23,6 +24,7 @@ import NearMeSharpIcon from "@mui/icons-material/NearMeSharp";
 import PhotoSizeSelectActualSharpIcon from "@mui/icons-material/PhotoSizeSelectActualSharp";
 import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
 import { useNavigate } from "react-router-dom";
+import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 
 const drawerWidth = 240;
 
@@ -79,6 +81,19 @@ export const DrawerConfig = (props) => {
   const drawer = (
     <div>
       <Toolbar />
+      <Divider />
+
+      <List>
+        <ListItem disablePadding onClick={() => navigate("/admin/home")}>
+          <ListItemButton>
+            <ListItemIcon>
+              <HomeSharpIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Home"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+
       <Divider />
       <List>
         {["Planos", "Parceiros", "E-mail", "Social"].map((text, index) => (
