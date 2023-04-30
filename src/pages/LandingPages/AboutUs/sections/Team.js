@@ -24,13 +24,11 @@ function Team() {
   useEffect(() => {
     const getPlansData = async () => {
       const data = await getPlans(city);
-      const dataSocial = await getsocial(city);
       setPlanos(data);
-      setSocial(dataSocial[0]);
     };
 
     getPlansData();
-  }, [planos, social, city]);
+  }, [planos, city]);
 
   return (
     <MKBox

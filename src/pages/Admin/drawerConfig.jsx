@@ -112,7 +112,11 @@ export const DrawerConfig = (props) => {
       <Divider />
       <List>
         {["Endereço", "Localização", "Banner", "MPS"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem
+            key={text}
+            disablePadding
+            onClick={() => navigate(`/admin/${props.city}/config/${text.toLowerCase()}`)}
+          >
             <ListItemButton>
               <ListItemIcon>{getIconTwo(index)}</ListItemIcon>
               <ListItemText primary={text} />

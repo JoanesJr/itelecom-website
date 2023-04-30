@@ -161,12 +161,12 @@ function AboutUs() {
       >
         {/* <Information /> */}
         <Featuring />
-        <Team />
+        <Team social={social} />
 
-        <Newsletter />
+        <Newsletter social={social} />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
-        <CenteredFooter content={footerRoutes} />
+        <CenteredFooter content={footerRoutes} socialB={social} />
       </MKBox>
     </>
   );

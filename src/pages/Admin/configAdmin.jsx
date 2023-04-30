@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Planos } from "./planos";
 import { Email } from "./email";
 import { Social } from "./social";
+import { Localizacao } from "./localizacao";
 
 export const ConfigAdmin = () => {
   const { city, page } = useParams();
@@ -19,6 +20,10 @@ export const ConfigAdmin = () => {
 
     if (page.toLowerCase() == "social") {
       return <Social city={city} />;
+    }
+
+    if (page.toLowerCase() == "endereço") {
+      return <Localizacao city={city} />;
     }
   };
 

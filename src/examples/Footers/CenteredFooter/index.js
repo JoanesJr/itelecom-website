@@ -25,37 +25,50 @@ import Stack from "@mui/material/Stack";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import GitHubIcon from "@mui/icons-material/GitHub";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function CenteredFooter({ company, links, socials, light }) {
+function CenteredFooter({ company, links, socials, light, socialB }) {
   const { href, name } = company;
 
   const year = new Date().getFullYear();
-
-  const renderSocials = socials.map((social) => (
-    <MKTypography
-      key={social.link}
-      component={Link}
-      href={social.link}
-      variant="body2"
-      color={light ? "white" : "secondary"}
-      fontWeight="regular"
-    >
-      {social.icon}
-    </MKTypography>
-  ));
 
   return (
     <MKBox component="footer" py={6}>
       <Grid container justifyContent="center">
         <Grid item xs={12} lg={8}>
           <Stack display="flex" direction="row" justifyContent="center" spacing={3} mt={1} mb={3}>
-            {renderSocials}
+            <MKTypography
+              component={Link}
+              href={socialB.facebook}
+              variant="body2"
+              color={light ? "white" : "secondary"}
+              fontWeight="regular"
+            >
+              <FacebookIcon />
+            </MKTypography>
+
+            <MKTypography
+              component={Link}
+              href={socialB.instagram}
+              variant="body2"
+              color={light ? "white" : "secondary"}
+              fontWeight="regular"
+            >
+              <InstagramIcon />
+            </MKTypography>
+
+            <MKTypography
+              component={Link}
+              href={socialB.twitter}
+              variant="body2"
+              color={light ? "white" : "secondary"}
+              fontWeight="regular"
+            >
+              <TwitterIcon />
+            </MKTypography>
           </Stack>
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
@@ -83,14 +96,16 @@ function CenteredFooter({ company, links, socials, light }) {
 CenteredFooter.defaultProps = {
   company: { href: "https://www.creative-tim.com/", name: "Joanes Technology" },
   socials: [
-    { icon: <FacebookIcon fontSize="small" />, link: "https://www.facebook.com/CreativeTim/" },
+    { icon: <FacebookIcon fontSize="small" />, link: "", social: "facebook" },
     {
       icon: <TwitterIcon fontSize="small" />,
-      link: "https://twitter.com/creativetim",
+      link: "",
+      social: "twitter",
     },
     {
       icon: <InstagramIcon fontSize="small" />,
-      link: "https://www.instagram.com/creativetimofficial/",
+      link: "",
+      social: "instagram",
     },
   ],
   light: false,
