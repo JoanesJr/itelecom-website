@@ -25,9 +25,7 @@ import MKButton from "components/MKButton";
 
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
 import CenteredFooter from "examples/Footers/CenteredFooter";
-import SimpleFooter from "examples/Footers/SimpleFooter";
 
 // About Us page sections
 import Information from "pages/LandingPages/AboutUs/sections/Information";
@@ -42,8 +40,24 @@ import footerRoutes from "footer.routes";
 // Images
 
 import bgBanner from "assets/images/banner-itelecom.png";
+import { useEffect, useState } from "react";
+import { getsocial } from "../../../firebase/cities/social";
+import { useParams } from "react-router-dom";
 
 function AboutUs() {
+  const [social, setSocial] = useState({});
+
+  const { city } = useParams();
+
+  useEffect(() => {
+    const getSocials = async () => {
+      const data = await getsocial(city);
+      setSocial(data[0]);
+    };
+
+    getSocials();
+  }, [city, social]);
+
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -94,36 +108,44 @@ function AboutUs() {
               Nos encontre em
             </MKTypography>
             <MKBox display="flex" justifyContent="center" alignItems="center">
-              <MKTypography
-                component="a"
-                variant="body1"
-                color="white"
-                href="https://www.instagram.com/joanes_njr/"
-                target="_blank"
-                mr={3}
-              >
-                <i className="fab fa-facebook" />
-              </MKTypography>
-              <MKTypography
-                component="a"
-                variant="body1"
-                color="white"
-                href="https://www.instagram.com/joanes_njr/"
-                target="_blank"
-                mr={3}
-              >
-                <i className="fab fa-instagram" />
-              </MKTypography>
-              <MKTypography
-                component="a"
-                variant="body1"
-                color="white"
-                href="https://www.instagram.com/joanes_njr/"
-                target="_blank"
-                mr={3}
-              >
-                <i className="fab fa-twitter" />
-              </MKTypography>
+              {social.facebook && (
+                <MKTypography
+                  component="a"
+                  variant="body1"
+                  color="white"
+                  href={social.facebook}
+                  target="_blank"
+                  mr={3}
+                >
+                  <i className="fab fa-facebook" />
+                </MKTypography>
+              )}
+
+              {social.instagram && (
+                <MKTypography
+                  component="a"
+                  variant="body1"
+                  color="white"
+                  href={social.instagram}
+                  target="_blank"
+                  mr={3}
+                >
+                  <i className="fab fa-instagram" />
+                </MKTypography>
+              )}
+
+              {social.twitter && (
+                <MKTypography
+                  component="a"
+                  variant="body1"
+                  color="white"
+                  href={social.twitter}
+                  target="_blank"
+                  mr={3}
+                >
+                  <i className="fab fa-twitter" />
+                </MKTypography>
+              )}
             </MKBox>
           </Grid>
         </Container>

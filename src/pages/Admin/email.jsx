@@ -31,7 +31,7 @@ export const Email = ({ city }) => {
     };
 
     getEmailData();
-  }, [city]);
+  }, [city, id]);
 
   const handleSubmit = async () => {
     try {

@@ -13,94 +13,24 @@ import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
 import team1 from "assets/images/logos/Paramount+.png";
 import { useEffect, useState } from "react";
 import { getPlans } from "../../../../firebase/cities/planos";
+import { getsocial } from "../../../../firebase/cities/social";
 import { useParams } from "react-router-dom";
-
-const planos = [
-  {
-    id: 1,
-    value: 500,
-    mb: 50,
-    instalacaoGratis: true,
-    image: false,
-    wifi: true,
-    roteador5g: true,
-    tvGratis: true,
-    destaque: true,
-  },
-  {
-    id: 2,
-    value: 60,
-    mb: 100,
-    instalacaoGratis: true,
-    image: true,
-    wifi: true,
-    roteador5g: true,
-    tvGratis: true,
-    destaque: false,
-  },
-  {
-    id: 3,
-    value: 70,
-    mb: 200,
-    instalacaoGratis: true,
-    image: true,
-
-    wifi: true,
-    roteador5g: true,
-    tvGratis: true,
-    destaque: true,
-  },
-  {
-    id: 4,
-    value: 80,
-    mb: 300,
-    instalacaoGratis: true,
-    image: true,
-
-    wifi: true,
-    roteador5g: true,
-    tvGratis: true,
-    destaque: false,
-  },
-  {
-    id: 5,
-    value: 90,
-    mb: 400,
-    instalacaoGratis: true,
-    image: true,
-
-    wifi: true,
-    roteador5g: true,
-    tvGratis: true,
-    image: true,
-    destaque: false,
-  },
-  {
-    id: 6,
-    value: 100,
-    mb: 500,
-    instalacaoGratis: true,
-    image: true,
-
-    wifi: true,
-    roteador5g: true,
-    tvGratis: true,
-    destaque: false,
-  },
-];
 
 function Team() {
   const [planos, setPlanos] = useState([]);
+  const [social, setSocial] = useState([]);
   const { city } = useParams();
 
   useEffect(() => {
     const getPlansData = async () => {
       const data = await getPlans(city);
+      const dataSocial = await getsocial(city);
       setPlanos(data);
+      setSocial(dataSocial[0]);
     };
 
     getPlansData();
-  });
+  }, [planos, social, city]);
 
   return (
     <MKBox
@@ -138,6 +68,7 @@ function Team() {
                   roteador5g={plano.roteador5g}
                   tvGratis={plano.tvGratis}
                   destaque={plano.destaque}
+                  contato={social.whatsapp}
                 />
               </MKBox>
             </Grid>

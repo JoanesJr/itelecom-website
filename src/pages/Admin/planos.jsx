@@ -75,7 +75,7 @@ export const Planos = ({ city }) => {
     };
 
     getPlansData();
-  }, [rows]);
+  }, [rows, city]);
 
   const isMobile = useBreakpointValue({
     base: true,

@@ -42,7 +42,7 @@ export const CrudCity = () => {
     };
 
     getCitysData();
-  }, [rows]);
+  }, [rows, city]);
 
   const isMobile = useBreakpointValue({
     base: true,

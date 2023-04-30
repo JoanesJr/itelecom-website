@@ -37,39 +37,6 @@ import bgImage from "assets/images/banner-itelecom.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
 
-const locals = [
-  {
-    id: "Itabatã",
-    state: "BA",
-    link: "/itabata/home",
-  },
-  {
-    id: "Mucuri",
-    state: "BA",
-    link: "/mucuri/home",
-  },
-  {
-    id: "Mucurizinho",
-    state: "BA",
-    link: "/mucurizinho/home",
-  },
-  {
-    id: "Colônia Nova 1",
-    state: "BA",
-    link: "/colonia_nova1/home",
-  },
-  {
-    id: "Colônia Nova 2",
-    state: "BA",
-    link: "/colonia_nova2/home",
-  },
-  {
-    id: "Cimental",
-    state: "BA",
-    link: "/cimental/home",
-  },
-];
-
 function Presentation() {
   const [locals, setLocals] = useState([]);
 

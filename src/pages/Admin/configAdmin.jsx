@@ -3,6 +3,7 @@ import { DrawerConfig } from "./drawerConfig";
 import { useParams } from "react-router-dom";
 import { Planos } from "./planos";
 import { Email } from "./email";
+import { Social } from "./social";
 
 export const ConfigAdmin = () => {
   const { city, page } = useParams();
@@ -14,6 +15,10 @@ export const ConfigAdmin = () => {
 
     if (page.toLowerCase() == "e-mail") {
       return <Email city={city} />;
+    }
+
+    if (page.toLowerCase() == "social") {
+      return <Social city={city} />;
     }
   };
 

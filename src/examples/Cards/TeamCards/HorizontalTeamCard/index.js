@@ -43,6 +43,7 @@ function HorizontalTeamCard({
   tvGratis,
   image,
   destaque,
+  contato,
 }) {
   return (
     <>
@@ -204,7 +205,7 @@ function HorizontalTeamCard({
             mt: -2,
           }}
         >
-          <Link href="https://api.whatsapp.com/send?1=pt_BR&phone=5573981436415" target="_blank">
+          <Link href={contato} target="_blank">
             <Button variant="contained" sx={{ color: "#FFF", fontWeight: "bolder" }}>
               CONTRATAR
             </Button>
