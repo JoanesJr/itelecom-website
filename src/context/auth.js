@@ -10,10 +10,10 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const loadStorageData = () => {
-      const storageUser = sessionStorage.getItem("@AuthFirebase:user");
+      // const storageUser = sessionStorage.getItem("@AuthFirebase:user");
       const storageToken = sessionStorage.getItem("@AuthFirebase:token");
-      if (storageToken && storageUser) {
-        setUser(storageUser);
+      if (storageToken) {
+        setUser(storageToken);
       }
     };
     loadStorageData();
@@ -24,10 +24,10 @@ export const AuthProvider = ({ children }) => {
       const dataRes = await SignIn({ email, password });
       setUser(dataRes);
       sessionStorage.setItem("@AuthFirebase:token", dataRes.accessToken);
-      sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(dataRes));
+      // sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(dataRes));
     } catch (err) {
       sessionStorage.removeItem("@AuthFirebase:token");
-      sessionStorage.removeItem("@AuthFirebase:user");
+      // sessionStorage.removeItem("@AuthFirebase:user");
     }
   };
 

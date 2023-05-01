@@ -14,6 +14,7 @@ export const Social = ({ city }) => {
   const [type, setType] = useState("create");
   const [twitter, setTwitter] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export const Social = ({ city }) => {
         setFacebook(data[0].facebook);
         setTwitter(data[0].twitter);
         setWhatsapp(data[0].whatsapp);
+        setWhatsappNumber(data[0].whatsappNumber);
         setId(data[0].id);
         setType("edit");
       } else {
@@ -40,7 +42,11 @@ export const Social = ({ city }) => {
 
   const handleSubmit = async () => {
     try {
-      await updatesocial({ instagram, twitter, facebook, whatsapp, city }, id, type);
+      await updatesocial(
+        { instagram, twitter, facebook, whatsapp, whatsappNumber, city },
+        id,
+        type
+      );
 
       setShowAlert(true);
 
@@ -108,10 +114,18 @@ export const Social = ({ city }) => {
           />
 
           <TextField
-            id="whatsappInput"
-            label="Whatsapp"
+            id="whatsappLinkInput"
+            label="Whatsapp Link"
             value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
+            variant="filled"
+            type="text"
+          />
+          <TextField
+            id="whatsappNumberInput"
+            label="Whatsapp Link"
+            value={whatsappNumber}
+            onChange={(e) => setWhatsappNumber(e.target.value)}
             variant="filled"
             type="text"
           />

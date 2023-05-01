@@ -17,6 +17,7 @@ Coded by www.creative-tim.com
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import Link from "@mui/material/Link";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -113,9 +114,11 @@ function AboutUs() {
             <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
               Garantindo a velocidade da sua internet com preços acessiveis
             </MKTypography>
-            <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
-              Fale Conosco
-            </MKButton>
+            <Link href={social.whatsapp} target="_blank">
+              <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
+                Fale Conosco
+              </MKButton>
+            </Link>
             <MKTypography variant="h6" color="white" mt={8} mb={1}>
               Nos encontre em
             </MKTypography>

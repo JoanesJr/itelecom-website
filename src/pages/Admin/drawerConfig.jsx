@@ -109,7 +109,7 @@ export const DrawerConfig = (props) => {
 
       <Divider />
       <List>
-        {["Planos", "Parceiros", "E-mail", "Social"].map((text, index) => (
+        {["Planos", "E-mail", "Social"].map((text, index) => (
           <ListItem
             key={text}
             disablePadding

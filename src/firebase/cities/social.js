@@ -36,7 +36,11 @@ export async function getsocial(city) {
   }
 }
 
-export async function updatesocial({ instagram, twitter, facebook, whatsapp, city }, id, type) {
+export async function updatesocial(
+  { instagram, twitter, facebook, whatsapp, whatsappNumber, city },
+  id,
+  type
+) {
   try {
     if (type == "edit") {
       await setDoc(doc(db, "social", id), {
@@ -44,6 +48,7 @@ export async function updatesocial({ instagram, twitter, facebook, whatsapp, cit
         twitter,
         facebook,
         whatsapp,
+        whatsappNumber,
         city,
       });
     } else {
