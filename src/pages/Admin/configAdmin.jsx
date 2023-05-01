@@ -6,6 +6,7 @@ import { Email } from "./email";
 import { Social } from "./social";
 import { Localizacao } from "./localizacao";
 import { MPS } from "./mps";
+import { Banner } from "./banner";
 
 export const ConfigAdmin = () => {
   const { city, page } = useParams();
@@ -29,6 +30,10 @@ export const ConfigAdmin = () => {
 
     if (page.toLowerCase() == "mps") {
       return <MPS city={city} />;
+    }
+
+    if (page.toLowerCase() == "banner") {
+      return <Banner city={city} />;
     }
   };
 

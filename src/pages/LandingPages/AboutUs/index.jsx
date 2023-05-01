@@ -28,7 +28,6 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import CenteredFooter from "examples/Footers/CenteredFooter";
 
 // About Us page sections
-import Information from "pages/LandingPages/AboutUs/sections/Information";
 import Team from "pages/LandingPages/AboutUs/sections/Team";
 import Featuring from "pages/LandingPages/AboutUs/sections/Featuring";
 import Newsletter from "pages/LandingPages/AboutUs/sections/Newsletter";
@@ -39,15 +38,16 @@ import footerRoutes from "footer.routes";
 
 // Images
 
-import bgBanner from "assets/images/banner-itelecom.png";
 import { useEffect, useState } from "react";
 import { getsocial } from "../../../firebase/cities/social";
+import { getbanner } from "../../../firebase/cities/banner";
 import { useParams } from "react-router-dom";
 
 const controller = new AbortController();
 
 function AboutUs() {
   const [social, setSocial] = useState({});
+  const [banner, setBanner] = useState("");
 
   const { city } = useParams();
 
@@ -57,7 +57,13 @@ function AboutUs() {
       setSocial(data[0]);
     };
 
+    const getBanners = async () => {
+      const data = await getbanner(city);
+      setBanner(data[0].imageURL);
+    };
+
     getSocials();
+    getBanners();
 
     return () => {
       controller.abort();
@@ -75,7 +81,7 @@ function AboutUs() {
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),
               rgba(gradients.dark.state, 0.6)
-            )}, url(${bgBanner})`,
+            )}, url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "grid",
