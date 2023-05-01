@@ -85,7 +85,7 @@ const routes = [
           },
           {
             name: "Entre em Contato",
-            route: "/contatos",
+            route: "/:contatos",
             component: <ContactUs />,
           },
         ],

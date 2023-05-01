@@ -9,7 +9,6 @@ import { getCities, updateCity, deleteCity } from "../../firebase/cities/index";
 import { useDisclosure, useBreakpointValue } from "@chakra-ui/react";
 
 import { ButtonsCrud } from "./buttonsCrudAdmin";
-import { AuthContext } from "context/auth";
 
 const controller = new AbortController();
 

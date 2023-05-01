@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
@@ -25,6 +25,8 @@ import PhotoSizeSelectActualSharpIcon from "@mui/icons-material/PhotoSizeSelectA
 import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
 import { useNavigate } from "react-router-dom";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
+import LogoutSharpIcon from "@mui/icons-material/LogoutSharp";
+import { AuthContext } from "context/auth";
 
 const drawerWidth = 240;
 
@@ -71,6 +73,7 @@ const getIconTwo = (index) => {
 export const DrawerConfig = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { signOutEmailPassword } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -90,6 +93,16 @@ export const DrawerConfig = (props) => {
               <HomeSharpIcon />
             </ListItemIcon>
             <ListItemText primary={"Home"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <List>
+        <ListItem disablePadding onClick={signOutEmailPassword}>
+          <ListItemButton>
+            <ListItemIcon>
+              <LogoutSharpIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Sair"} />
           </ListItemButton>
         </ListItem>
       </List>

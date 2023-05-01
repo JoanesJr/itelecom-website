@@ -32,8 +32,27 @@ import footerRoutes from "footer.routes";
 
 // Image
 import bgImage from "assets/images/banner-itelecom.png";
+import { useEffect, useState } from "react";
+const controller = new AbortController();
+import { getbanner } from "../../../firebase/cities/banner";
+import { useParams } from "react-router-dom";
 
 function ContactUs() {
+  const [banner, setBanner] = useState("");
+  const { city } = useParams();
+  useEffect(() => {
+    const getBanners = async () => {
+      const data = await getbanner(city);
+      setBanner(data[0].imageURL);
+    };
+
+    getBanners();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
   return (
     <>
       <MKBox position="fixed" top="0.5rem" width="100%">
@@ -49,7 +68,7 @@ function ContactUs() {
             ml={2}
             mt={2}
             sx={{
-              backgroundImage: `url(${bgImage})`,
+              backgroundImage: `url(${banner})`,
               backgroundRepet: "no-repeat",
               backgroundSize: "cover",
             }}

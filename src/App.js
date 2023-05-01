@@ -36,6 +36,7 @@ import { ConfigAdmin } from "pages/Admin/configAdmin";
 import SignInBasic from "pages/LandingPages/SignIn";
 import { AuthProvider } from "context/auth";
 import { AuthContext } from "context/auth";
+import ContactUs from "pages/LandingPages/ContactUs";
 
 const PrivateRoutes = () => {
   const { signed } = useContext(AuthContext);
@@ -68,10 +69,11 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        {getRoutes(routes)}
+        {/* {getRoutes(routes)} */}
         <Route path="/" element={<Presentation />} />
         {/* <Route path="*" element={<Navigate to="/" />} /> */}
         <Route path="/:city/home" element={<AboutUs />} />
+        <Route path="/:city/contato" element={<ContactUs />} />
       </Routes>
       <AuthProvider>
         <Routes>

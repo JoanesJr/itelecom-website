@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { SignIn, SignOut, ValidIdToken } from "../firebase/index";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadStorageData = () => {
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     await SignOut();
     sessionStorage.clear();
     setUser(null);
-    return <Navigate to="/admin" />;
+    navigate("/admin/super/login");
   };
 
   return (

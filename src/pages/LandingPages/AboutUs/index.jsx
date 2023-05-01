@@ -72,7 +72,7 @@ function AboutUs() {
 
   return (
     <>
-      <DefaultNavbar routes={routes} transparent light />
+      <DefaultNavbar routes={routes} city={city} transparent light />
       <MKBox
         minHeight="75vh"
         width="100%"
