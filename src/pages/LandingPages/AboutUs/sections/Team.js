@@ -18,9 +18,8 @@ import { useParams } from "react-router-dom";
 
 const controller = new AbortController();
 
-function Team({ city }) {
+function Team({ city, social }) {
   const [planos, setPlanos] = useState([]);
-  const [social, setSocial] = useState([]);
 
   useEffect(() => {
     const getPlansData = async () => {

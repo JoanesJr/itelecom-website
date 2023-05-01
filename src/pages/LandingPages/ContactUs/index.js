@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -29,16 +30,36 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Routes
 import routes from "routes";
 import footerRoutes from "footer.routes";
+import { z } from "zod";
 
 // Image
 import bgImage from "assets/images/banner-itelecom.png";
 import { useEffect, useState } from "react";
 const controller = new AbortController();
 import { getbanner } from "../../../firebase/cities/banner";
+import { getemails } from "../../../firebase/cities/email";
 import { useParams } from "react-router-dom";
+
+import emailjs from "@emailjs/browser";
+import { Alert } from "@mui/material";
 
 function ContactUs() {
   const [banner, setBanner] = useState("");
+  const [sendEmail, setSendEmail] = useState("");
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageError, setMessageError] = useState(false);
+  const [messageErrorMessage, setMessageErrorMessage] = useState("");
+  const [showLoader, setLoader] = useState(false);
+  const [endProcess, setEndProcess] = useState(false);
+  const [endStatus, setEndStatus] = useState("");
+  const [endMessage, setEndMessages] = useState("");
+
   const { city } = useParams();
   useEffect(() => {
     const getBanners = async () => {
@@ -46,12 +67,99 @@ function ContactUs() {
       setBanner(data[0].imageURL);
     };
 
+    const getEmails = async () => {
+      const data = await getemails(city);
+      setSendEmail(data[0].email);
+    };
+
     getBanners();
+    getEmails();
 
     return () => {
       controller.abort();
     };
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setEndProcess(false);
+      setEndMessages("");
+      setEndStatus("");
+      setEmailError(false);
+      setEmailErrorMessage("");
+      setNameError(false);
+      setNameErrorMessage("");
+      setMessageError(false);
+      setMessageErrorMessage("");
+      setLoader(true);
+
+      const schema = z.object({
+        name: z.string().min(3, { message: "O nome deve conter pelo menos 03 caracteres" }),
+        email: z.string().email({ message: "Informe um e-mail valido." }),
+        message: z
+          .string()
+          .max(250, { message: "A mensagem pode contar no máximo 250 caracteres" }),
+      });
+
+      const dataValidate = schema.parse({ name, email, message });
+
+      const templateParams = {
+        from_name: dataValidate.name,
+        message: dataValidate.message,
+        email: dataValidate.email,
+        city,
+        toEmail: sendEmail,
+      };
+
+      emailjs
+        .send("service_jeak98m", "template_rzycntd", templateParams, "FiNpDKwOyrOot-Hv3")
+        .then((dt) => {
+          setName("");
+          setMessage("");
+          setEmail("");
+          setEndProcess(true);
+          setLoader(false);
+          setEndStatus("success");
+          setEndMessages("E-mail enviado com sucesso");
+
+          setTimeout(() => {
+            setEndProcess(false);
+            setEndStatus("");
+            setEndMessages("");
+          }, [2000]);
+        })
+        .catch((err) => {
+          setLoader(false);
+          setEndProcess(true);
+          setEndStatus("error");
+          setEndMessages("Ocrreu um erro ao enviar o E-mail");
+
+          setTimeout(() => {
+            setEndProcess(false);
+            setEndStatus("");
+            setEndMessages("");
+          }, [2000]);
+        });
+      // await SendMail({ name, message, emailSent: email, city, email: emailSent });
+    } catch (err) {
+      const existsErrorEmail = "email" in err.formErrors.fieldErrors;
+      const existsErrorName = "name" in err.formErrors.fieldErrors;
+      const existsErrorMessage = "message" in err.formErrors.fieldErrors;
+      if (existsErrorEmail) {
+        setEmailError(true);
+        setEmailErrorMessage(err.formErrors.fieldErrors.email[0]);
+      }
+      if (existsErrorName) {
+        setNameError(true);
+        setNameErrorMessage(err.formErrors.fieldErrors.name[0]);
+      }
+      if (existsErrorMessage) {
+        setMessageError(true);
+        setMessageErrorMessage(err.formErrors.fieldErrors.message[0]);
+      }
+    }
+  };
 
   return (
     <>
@@ -117,36 +225,53 @@ function ContactUs() {
                   <Grid item xs={12} md={6}>
                     <MKInput
                       variant="standard"
+                      error={nameError}
+                      helperText={nameErrorMessage}
                       label="Nome Completo"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <MKInput
                       type="email"
+                      error={emailError}
+                      helperText={emailErrorMessage}
                       variant="standard"
                       label="Email"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <MKInput
                       variant="standard"
+                      error={messageError}
+                      helperText={messageErrorMessage}
                       label="Como podemos ajudar você?"
                       placeholder="Escreva a sua mensagem em até 250 caracteres"
                       InputLabelProps={{ shrink: true }}
                       multiline
                       fullWidth
                       rows={6}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     />
                   </Grid>
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                  <MKButton type="submit" variant="gradient" color="info">
+                  <MKButton type="submit" variant="gradient" color="info" onClick={handleSubmit}>
                     Enviar Mensagem
                   </MKButton>
+                </Grid>
+                <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
+                  {showLoader && <CircularProgress />}
+
+                  {endProcess && <Alert severity={endStatus}>{endMessage}</Alert>}
                 </Grid>
               </MKBox>
             </MKBox>

@@ -124,7 +124,7 @@ function Presentation() {
                     lg={3}
                     sx={{
                       ml: { xs: 0, lg: 3 },
-                      mb: { xs: 12, md: 0 },
+                      mb: { xs: 1, md: 0 },
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",

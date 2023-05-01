@@ -70,6 +70,8 @@ function HorizontalTeamCard({
             xs={12}
             sx={{
               my: "auto",
+              height: "100%",
+              width: "100%",
             }}
           >
             <MKBox
@@ -83,6 +85,8 @@ function HorizontalTeamCard({
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "column",
+                height: "100%",
+                width: "100%",
               }}
             >
               <MKTypography variant="h4" color={position.color} mb={1}>
@@ -98,6 +102,8 @@ function HorizontalTeamCard({
               <Box
                 sx={{
                   mt: 2,
+                  height: "100%",
+                  width: "100%",
                 }}
               >
                 <Box
@@ -107,21 +113,24 @@ function HorizontalTeamCard({
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
+                    height: "100%",
                   }}
                 >
-                  <Box
-                    component="img"
-                    sx={{
-                      height: "5rem",
-                      width: "6rem",
-                      maxHeight: { xs: "5rem", md: "5rem" },
-                      maxWidth: { xs: "6rem", md: "8rem" },
-                      mt: -2,
-                      mb: 2,
-                    }}
-                    alt="itelecomTv"
-                    src={itelecomTv}
-                  />
+                  {tvGratis && (
+                    <Box
+                      component="img"
+                      sx={{
+                        height: "5rem",
+                        width: "6rem",
+                        maxHeight: { xs: "5rem", md: "5rem" },
+                        maxWidth: { xs: "6rem", md: "8rem" },
+                        mt: -2,
+                        mb: 2,
+                      }}
+                      alt="itelecomTv"
+                      src={itelecomTv}
+                    />
+                  )}
                 </Box>
                 {instalacaoGratis && (
                   <MKTypography variant="h6" color="text">
@@ -149,6 +158,7 @@ function HorizontalTeamCard({
                   justifyContent: "space-around",
                   alignItems: "center",
                   mt: -5,
+                  height: "100%",
                 }}
               >
                 <Box
@@ -157,6 +167,7 @@ function HorizontalTeamCard({
                     alignContent: "center",
                     justifyContent: "center",
                     width: "100%",
+                    height: "100%",
                     // m: 1,
                   }}
                 >
@@ -168,7 +179,7 @@ function HorizontalTeamCard({
                           height: "6rem",
                           width: "10rem",
                           maxHeight: { xs: "6rem", md: "6rem" },
-                          maxWidth: { xs: "10rem", md: "12rem" },
+                          maxWidth: { xs: "7rem", md: "12rem" },
                           mt: 5,
                         }}
                         alt="paramount streaming"
@@ -185,6 +196,30 @@ function HorizontalTeamCard({
                         }}
                         alt="watch Br"
                         src={watchBr}
+                      />
+                    </>
+                  )}
+                  {!image && (
+                    <>
+                      <Box
+                        // component="img"
+                        sx={{
+                          height: "6rem",
+                          width: "10rem",
+                          maxHeight: { xs: "6rem", md: "6rem" },
+                          maxWidth: { xs: "7rem", md: "12rem" },
+                          mt: 5,
+                        }}
+                      />
+                      <Box
+                        // component="img"
+                        sx={{
+                          height: "6rem",
+                          width: "23rem",
+                          maxHeight: { xs: "6rem", md: "6rem" },
+                          maxWidth: { xs: "10rem", md: "23rem" },
+                          mt: 5,
+                        }}
                       />
                     </>
                   )}
