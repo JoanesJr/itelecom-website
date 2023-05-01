@@ -13,21 +13,15 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
-import MuiLink from "@mui/material/Link";
 
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
+import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -37,32 +31,63 @@ import MKButton from "components/MKButton";
 
 // Material Kit 2 React example components
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import SimpleFooter from "examples/Footers/SimpleFooter";
 
 // Material Kit 2 React page layout routes
 import routes from "routes";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import { z } from "zod";
+import { SignIn } from "../../../firebase/index";
+import { AuthContext } from "context/auth";
 
 function SignInBasic() {
-  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
+  const { signInEmailPassword, verifyToken } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
+  const [errorLoginMessage, setErrorLoginMessage] = useState("");
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const handleLogin = async () => {
+    try {
+      setErrorLogin(false);
+      setErrorLoginMessage("");
+      const loginSchema = z.object({
+        email: z.string().email({ message: "Informe um e-mail valido" }),
+        password: z.string().min(6, { message: "A senha deve conter pelo menos 6 caracteres" }),
+      });
+
+      const validateLogin = loginSchema.parse({ email, password });
+
+      await signInEmailPassword({
+        email: validateLogin.email,
+        password: validateLogin.password,
+      });
+
+      navigate("/admin/super/home");
+    } catch (err) {
+      if (err.formErrors?.fieldErrors) {
+        const existsErrorEmail = "email" in err.formErrors.fieldErrors;
+        const existsErrorPassword = "password" in err.formErrors.fieldErrors;
+        if (existsErrorEmail) {
+          setErrorLogin(true);
+          setErrorLoginMessage(err.formErrors.fieldErrors.email[0]);
+        }
+        if (existsErrorPassword) {
+          setErrorLogin(true);
+          setErrorLoginMessage(err.formErrors.fieldErrors.password[0]);
+        }
+      }
+
+      setErrorLogin(true);
+      setErrorLoginMessage("Dados de login inválidos");
+    }
+  };
 
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
-          color: "info",
-        }}
-        transparent
-        light
-      />
+      <DefaultNavbar routes={routes} showMenus={false} transparent light />
       <MKBox
         position="absolute"
         top={0}
@@ -97,74 +122,46 @@ function SignInBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  Sign in
+                  Login
                 </MKTypography>
-                <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <FacebookIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GitHubIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GoogleIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                </Grid>
+
+                {errorLogin && (
+                  <MKTypography variant="h6" fontWeight="small" color="error" mt={1}>
+                    {errorLoginMessage}
+                  </MKTypography>
+                )}
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput
+                      type="email"
+                      label="Email"
+                      fullWidth
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth />
+                    <MKInput
+                      type="password"
+                      label="Senha"
+                      fullWidth
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
                   </MKBox>
-                  <MKBox display="flex" alignItems="center" ml={-1}>
-                    <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-                    <MKTypography
-                      variant="button"
-                      fontWeight="regular"
-                      color="text"
-                      onClick={handleSetRememberMe}
-                      sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-                    >
-                      &nbsp;&nbsp;Remember me
-                    </MKTypography>
-                  </MKBox>
+
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
-                      sign in
+                    <MKButton variant="gradient" color="info" fullWidth onClick={handleLogin}>
+                      Entrar
                     </MKButton>
-                  </MKBox>
-                  <MKBox mt={3} mb={1} textAlign="center">
-                    <MKTypography variant="button" color="text">
-                      Don&apos;t have an account?{" "}
-                      <MKTypography
-                        component={Link}
-                        to="/authentication/sign-up/cover"
-                        variant="button"
-                        color="info"
-                        fontWeight="medium"
-                        textGradient
-                      >
-                        Sign up
-                      </MKTypography>
-                    </MKTypography>
                   </MKBox>
                 </MKBox>
               </MKBox>
             </Card>
           </Grid>
         </Grid>
-      </MKBox>
-      <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
-        <SimpleFooter light />
       </MKBox>
     </>
   );

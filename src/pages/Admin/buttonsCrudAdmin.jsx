@@ -25,7 +25,7 @@ export const ButtonsCrud = ({
   const navigate = useNavigate();
 
   const navigateConfig = () => {
-    navigate(`/admin/${selectionModel}/config/planos`);
+    navigate(`/admin/super/${selectionModel}/config/planos`);
   };
   return (
     <ButtonGroup variant="contained" aria-label="outlined primary button group">

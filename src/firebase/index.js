@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,12 +21,19 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// const appAdmin = initAdmin();
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const analytics = getAnalytics(app);
 export const fileStorage = getStorage(app);
-export const authService = {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+const auth = getAuth(app);
+
+export const SignIn = async ({ email, password }) => {
+  const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+  return user;
+};
+
+export const SignOut = async () => {
+  await signOut(auth);
 };

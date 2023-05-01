@@ -84,7 +84,7 @@ export const DrawerConfig = (props) => {
       <Divider />
 
       <List>
-        <ListItem disablePadding onClick={() => navigate("/admin/home")}>
+        <ListItem disablePadding onClick={() => navigate("/admin/super/home")}>
           <ListItemButton>
             <ListItemIcon>
               <HomeSharpIcon />
@@ -100,7 +100,7 @@ export const DrawerConfig = (props) => {
           <ListItem
             key={text}
             disablePadding
-            onClick={() => navigate(`/admin/${props.city}/config/${text.toLowerCase()}`)}
+            onClick={() => navigate(`/admin/super/${props.city}/config/${text.toLowerCase()}`)}
           >
             <ListItemButton>
               <ListItemIcon>{getIconOne(index)}</ListItemIcon>
@@ -115,7 +115,7 @@ export const DrawerConfig = (props) => {
           <ListItem
             key={text}
             disablePadding
-            onClick={() => navigate(`/admin/${props.city}/config/${text.toLowerCase()}`)}
+            onClick={() => navigate(`/admin/super/${props.city}/config/${text.toLowerCase()}`)}
           >
             <ListItemButton>
               <ListItemIcon>{getIconTwo(index)}</ListItemIcon>

@@ -1,6 +1,6 @@
 import { EditIcon } from "@chakra-ui/icons";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalCity } from "./modalCity";
 import { Box, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -9,6 +9,7 @@ import { getCities, updateCity, deleteCity } from "../../firebase/cities/index";
 import { useDisclosure, useBreakpointValue } from "@chakra-ui/react";
 
 import { ButtonsCrud } from "./buttonsCrudAdmin";
+import { AuthContext } from "context/auth";
 
 const controller = new AbortController();
 

@@ -52,6 +52,7 @@ function DefaultNavbar({
   sticky,
   relative,
   center,
+  showMenus = true,
 }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");

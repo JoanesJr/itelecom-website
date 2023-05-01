@@ -28,6 +28,7 @@
     "chroma-js": "2.4.2",
     "dotenv": "^16.0.3",
     "firebase": "^9.20.0",
+    "firebase-admin": "^11.7.0",
     "flatpickr": "4.6.13",
     "framer-motion": "^10.12.4",
     "prop-types": "15.8.1",
