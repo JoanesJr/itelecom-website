@@ -143,6 +143,7 @@ function ContactUs() {
         });
       // await SendMail({ name, message, emailSent: email, city, email: emailSent });
     } catch (err) {
+      setLoader(false);
       const existsErrorEmail = "email" in err.formErrors.fieldErrors;
       const existsErrorName = "name" in err.formErrors.fieldErrors;
       const existsErrorMessage = "message" in err.formErrors.fieldErrors;
