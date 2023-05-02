@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import styles from "./style.module.css";
 
@@ -27,11 +28,14 @@ import MKTypography from "components/MKTypography";
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
+import CenteredFooter from "examples/Footers/CenteredFooter";
 
 // Routes
 import routes from "routes";
 import footerRoutes from "footer.routes";
 import { z } from "zod";
+import LocalPhoneSharpIcon from "@mui/icons-material/LocalPhoneSharp";
+import EmailSharpIcon from "@mui/icons-material/EmailSharp";
 
 // Image
 import bgImage from "assets/images/banner-itelecom.png";
@@ -39,10 +43,11 @@ import { useEffect, useState } from "react";
 const controller = new AbortController();
 import { getbanner } from "../../../firebase/cities/banner";
 import { getemails } from "../../../firebase/cities/email";
+import { getsocial } from "../../../firebase/cities/social";
 import { useParams } from "react-router-dom";
 
 import emailjs from "@emailjs/browser";
-import { Alert } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
 
 function ContactUs() {
   const [banner, setBanner] = useState("");
@@ -60,6 +65,7 @@ function ContactUs() {
   const [endProcess, setEndProcess] = useState(false);
   const [endStatus, setEndStatus] = useState("");
   const [endMessage, setEndMessages] = useState("");
+  const [social, setSocial] = useState({});
 
   const { city } = useParams();
   useEffect(() => {
@@ -73,8 +79,14 @@ function ContactUs() {
       setSendEmail(data[0].email);
     };
 
+    const getSocials = async () => {
+      const data = await getsocial(city);
+      setSocial(data[0]);
+    };
+
     getBanners();
     getEmails();
+    getSocials();
 
     return () => {
       controller.abort();
@@ -169,32 +181,16 @@ function ContactUs() {
         <DefaultNavbar routes={routes} transparent />
       </MKBox>
       <Grid container spacing={3} alignItems="center">
-        <Grid item xs={12} lg={6} sx={{}}>
-          <MKBox
-            display={{ xs: "none", lg: "flex" }}
-            className={styles.responsiveImage}
-            borderRadius="lg"
-            ml={2}
-            mt={2}
-            sx={{
-              width: { lg: "54rem" },
-              height: "31rem",
-              backgroundImage: `url(${banner})`,
-              backgroundRepet: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-        </Grid>
         <Grid
           item
           xs={12}
-          sm={10}
-          md={6}
-          lg={6}
-          xl={4}
-          ml={{ xs: "auto", lg: 6 }}
-          mr={{ xs: "auto", lg: 6 }}
+          sm={12}
+          md={12}
+          lg={8}
+          xl={8}
+          ml={{ xs: "auto", lg: "auto" }}
+          mr={{ xs: "auto", lg: "auto" }}
+          sx={{}}
         >
           <MKBox
             bgColor="white"
@@ -281,9 +277,98 @@ function ContactUs() {
             </MKBox>
           </MKBox>
         </Grid>
+        <Grid
+          item
+          xs={12}
+          lg={4}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mt: { xs: -15, lg: 0 },
+          }}
+        >
+          <MKBox
+            bgColor="white"
+            borderRadius="xl"
+            shadow="lg"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            mt={{ xs: 20, sm: 18, md: 20 }}
+            mb={{ xs: 20, sm: 18, md: 20 }}
+            mx={3}
+          >
+            <MKBox
+              variant="gradient"
+              bgColor="info"
+              coloredShadow="info"
+              borderRadius="lg"
+              p={2}
+              mx={2}
+              mt={-3}
+              sx={{ height: "100%" }}
+            >
+              <MKTypography variant="h3" color="white">
+                Dados de contato
+              </MKTypography>
+            </MKBox>
+            <MKBox p={3} sx={{ height: "100%" }}>
+              {social?.whatsappNumber &&
+                social?.whatsappNumber.split("|").map((ct) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      mt: 2,
+                    }}
+                  >
+                    <LocalPhoneSharpIcon />
+                    <Typography ml={2} variant="body2">
+                      {ct}
+                    </Typography>
+                  </Box>
+                ))}
+              <Box
+                sx={{
+                  display: "flex",
+                  mt: 2,
+                }}
+              >
+                <EmailSharpIcon />
+                <Typography variant="body2" ml={2}>
+                  {sendEmail}
+                </Typography>
+              </Box>
+              {social?.instagram && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    mt: 2,
+                  }}
+                >
+                  <MKTypography
+                    component="a"
+                    variant="body1"
+                    href={social?.instagram || ""}
+                    target="_blank"
+                    mr={3}
+                    sx={{
+                      display: "flex",
+                    }}
+                  >
+                    <i className="fab fa-instagram" />
+                    <Typography variant="body2" ml={2}>
+                      @{social?.instagram && social?.instagram.split("/")[3]}
+                    </Typography>
+                  </MKTypography>
+                </Box>
+              )}
+            </MKBox>
+          </MKBox>
+        </Grid>
       </Grid>
       <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
+        <CenteredFooter content={footerRoutes} socialB={social} />
       </MKBox>
     </>
   );

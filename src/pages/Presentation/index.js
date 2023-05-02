@@ -28,7 +28,7 @@ import routes from "routes";
 
 // Images
 // import bgImage from "assets/images/banner-itelecom.png";
-import bgImage from "assets/images/banner-home.png";
+import bgImage from "assets/images/banner_home_2.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
 
@@ -101,7 +101,7 @@ function Presentation() {
                   alignItems: "center",
                   p: 2,
                   mx: { xs: 2, lg: 3 },
-                  mt: -22,
+                  mt: -30,
                   mb: 4,
                   // boxShadow: ({ boxShadows: { xxl } }) => xxl,
                 }}
@@ -113,12 +113,9 @@ function Presentation() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    // mt: 0,
                   }}
                 >
-                  <MKTypography variant="h2" sx={{ color: "#00008B", fontWeigth: "bold" }}>
-                    Selecione a sua cidade
-                  </MKTypography>
+                  <MKTypography variant="h2">Selecione a sua cidade</MKTypography>
                 </Grid>
 
                 {locals.map((local) => (
