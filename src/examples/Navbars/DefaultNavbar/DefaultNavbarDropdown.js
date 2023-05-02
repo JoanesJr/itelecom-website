@@ -29,6 +29,7 @@ import MKTypography from "components/MKTypography";
 import { Box } from "@mui/material";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import SendSharpIcon from "@mui/icons-material/SendSharp";
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 
 function DefaultNavbarDropdown({
   name,
@@ -148,6 +149,55 @@ function DefaultNavbarDropdown({
                   onClick={() => navigate(`/${city}/home`)}
                 >
                   Contato
+                </MKTypography>
+              </Box>
+            </MKBox>
+          </MKBox>
+          <MKBox
+            {...rest}
+            mx={1}
+            p={1}
+            display="flex"
+            alignItems="baseline"
+            color={light ? "white" : "dark"}
+            opacity={light ? 1 : 0.6}
+            sx={{ cursor: "pointer", userSelect: "none" }}
+            // onClick={() => navigate(`/${city}/contato`)}
+            component="a"
+            href="https://ixc.itelecominternet.com.br/central_assinante_web/login"
+            target="_blank"
+            // {...(route && routeComponent)}
+            // {...(href && linkComponent)}
+          >
+            <MKBox
+              sx={
+                {
+                  // display: "flex",
+                }
+              }
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                }}
+              >
+                <MKTypography
+                  variant="body2"
+                  lineHeight={1}
+                  color="inherit"
+                  sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
+                >
+                  <PersonSharpIcon />
+                </MKTypography>
+                <MKTypography
+                  variant="button"
+                  fontWeight="regular"
+                  textTransform="capitalize"
+                  color={light ? "white" : "dark"}
+                  sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
+                  onClick={() => navigate(`/${city}/home`)}
+                >
+                  Area do Cliente
                 </MKTypography>
               </Box>
             </MKBox>

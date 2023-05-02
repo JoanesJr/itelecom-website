@@ -46,6 +46,7 @@ import { Typography } from "@mui/material";
 import { Dashboard } from "@mui/icons-material";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import SendSharpIcon from "@mui/icons-material/SendSharp";
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 
 function DefaultNavbar({
   brand = "Itelecom",
@@ -567,6 +568,37 @@ function DefaultNavbar({
                       sx={{ fontWeight: "100%", ml: 1, mr: 0.25, cursor: "pointer" }}
                     >
                       Contato
+                    </MKTypography>
+                  </MKBox>
+                  <MKBox
+                    component="a"
+                    sx={{
+                      display: "flex",
+                      ml: 1,
+                    }}
+                    href="https://ixc.itelecominternet.com.br/central_assinante_web/login"
+                    target="_blank"
+                  >
+                    <MKTypography
+                      variant="h6"
+                      lineHeight={1}
+                      color="inherit"
+                      sx={{
+                        alignSelf: "center",
+                        "& *": { verticalAlign: "middle" },
+                        cursor: "pointer",
+                      }}
+                    >
+                      <PersonSharpIcon from />
+                    </MKTypography>
+                    <MKTypography
+                      variant="h6"
+                      fontWeight="regular"
+                      textTransform="capitalize"
+                      color={light ? "white" : "dark"}
+                      sx={{ fontWeight: "100%", ml: 1, mr: 0.25, cursor: "pointer" }}
+                    >
+                      Area do Cliente
                     </MKTypography>
                   </MKBox>
                 </MKBox>

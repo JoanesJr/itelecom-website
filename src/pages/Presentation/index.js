@@ -27,7 +27,8 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 
 // Images
-import bgImage from "assets/images/banner-itelecom.png";
+// import bgImage from "assets/images/banner-itelecom.png";
+import bgImage from "assets/images/banner-home.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
 
@@ -112,9 +113,12 @@ function Presentation() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    // mt: 0,
                   }}
                 >
-                  <MKTypography variant="h2">Selecione a sua cidade</MKTypography>
+                  <MKTypography variant="h2" sx={{ color: "#00008B", fontWeigth: "bold" }}>
+                    Selecione a sua cidade
+                  </MKTypography>
                 </Grid>
 
                 {locals.map((local) => (
