@@ -114,7 +114,7 @@ function AboutUs() {
             <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
               Garantindo a velocidade da sua internet com preços acessiveis
             </MKTypography>
-            <Link href={social.whatsapp} target="_blank">
+            <Link href={social?.whatsapp || ""} target="_blank">
               <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
                 Fale Conosco
               </MKButton>
@@ -141,7 +141,7 @@ function AboutUs() {
                   component="a"
                   variant="body1"
                   color="white"
-                  href={social.instagram}
+                  href={social?.instagram || ""}
                   target="_blank"
                   mr={3}
                 >
@@ -154,7 +154,7 @@ function AboutUs() {
                   component="a"
                   variant="body1"
                   color="white"
-                  href={social.twitter}
+                  href={social?.twitter}
                   target="_blank"
                   mr={3}
                 >

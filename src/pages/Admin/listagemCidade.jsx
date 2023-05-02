@@ -55,7 +55,9 @@ export const CrudCity = () => {
   });
 
   const deleteCitySubmit = async () => {
-    await deleteCity(selectionModel);
+    if (window.confirm("Deseja excluir esta cidade?")) {
+      await deleteCity(selectionModel);
+    }
   };
 
   return (

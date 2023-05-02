@@ -102,8 +102,6 @@ function HorizontalTeamCard({
               <Box
                 sx={{
                   mt: 2,
-                  height: "100%",
-                  width: "100%",
                 }}
               >
                 <Box
@@ -113,7 +111,6 @@ function HorizontalTeamCard({
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
-                    height: "100%",
                   }}
                 >
                   {tvGratis && (
@@ -240,7 +237,7 @@ function HorizontalTeamCard({
             mt: -2,
           }}
         >
-          <Link href={contato} target="_blank">
+          <Link href={contato || ""} target="_blank">
             <Button variant="contained" sx={{ color: "#FFF", fontWeight: "bolder" }}>
               CONTRATAR
             </Button>

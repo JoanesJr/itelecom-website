@@ -64,7 +64,7 @@ function Newsletter({ social, city }) {
                 </MKTypography>
                 <MKTypography variant="body2">
                   <span style={{ fontWeight: "bold" }}>Whatsapp Suporte:</span>{" "}
-                  {social.whatsappNumber || ""}
+                  {social?.whatsappNumber || ""}
                 </MKTypography>
               </Grid>
               <Grid item xs={4} sx={{ mt: 2 }}>

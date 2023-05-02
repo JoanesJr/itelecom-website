@@ -173,6 +173,16 @@ export const ModalPlano = ({ open, handleClose, city, selectionModel, type }) =>
                     />
                     <FormControlLabel
                       control={
+                        <Switch
+                          checked={state.roteador5g}
+                          onChange={handleChange}
+                          name="roteador5g"
+                        />
+                      }
+                      label="Roteador 5G"
+                    />
+                    <FormControlLabel
+                      control={
                         <Switch checked={state.image} onChange={handleChange} name="image" />
                       }
                       label="Logo"

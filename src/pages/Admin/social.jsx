@@ -123,7 +123,7 @@ export const Social = ({ city }) => {
           />
           <TextField
             id="whatsappNumberInput"
-            label="Whatsapp Link"
+            label="Whatsapp Número"
             value={whatsappNumber}
             onChange={(e) => setWhatsappNumber(e.target.value)}
             variant="filled"

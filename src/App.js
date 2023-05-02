@@ -81,7 +81,10 @@ export default function App() {
           <Route path="/admin/super/home" element={<PrivateRoutes />}>
             <Route path="/admin/super/home" element={<CrudCity />} />
           </Route>
-          <Route path="/admin/super/:city/config/:page" element={<ConfigAdmin />} />
+          <Route path="/admin/super/:city/config/:page" element={<PrivateRoutes />}>
+            <Route path="/admin/super/:city/config/:page" element={<ConfigAdmin />} />
+          </Route>
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
       </AuthProvider>
     </ThemeProvider>
