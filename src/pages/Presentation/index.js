@@ -56,7 +56,7 @@ function Presentation() {
 
   return (
     <>
-      <DefaultNavbar routes={routes} showMenus={false} transparent sticky />
+      <DefaultNavbar routes={routes} showMenus={false} transparent light />
       <MKBox
         minHeight="75vh"
         width="100%"
@@ -84,7 +84,8 @@ function Presentation() {
             mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
-            boxShadow: ({ boxShadows: { xxl } }) => xxl,
+            // boxShadow: ({ boxShadows: { xxl } }) => xxl,
+            boxShadow: "none",
             backgroundColor: "rgba(255, 250, 250, 0.1)",
           }}
         >
@@ -101,7 +102,7 @@ function Presentation() {
                   mx: { xs: 2, lg: 3 },
                   mt: -22,
                   mb: 4,
-                  boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                  // boxShadow: ({ boxShadows: { xxl } }) => xxl,
                 }}
               >
                 <Grid
