@@ -150,7 +150,7 @@ function Presentation() {
                         container
                         spacing={1}
                         sx={{
-                          mt: 1,
+                          // mt: 1,
                           width: "100%",
                           display: "flex",
                           justifyContent: "center",
@@ -167,20 +167,36 @@ function Presentation() {
                             alignItems: "center",
                           }}
                         >
-                          <Link href={local.link}>
-                            <MKTypography
-                              variant="h4"
+                          <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            // height={200}
+                          >
+                            <Link
+                              href={local.link}
                               sx={{
-                                fontWeigth: "bolder",
-                                color: "#c0c0c0",
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
                               }}
                             >
-                              {local.id} - {local.state}
-                            </MKTypography>
-                          </Link>
+                              <MKTypography
+                                variant="h4"
+                                align="center"
+                                sx={{
+                                  fontWeigth: "bolder",
+                                  // color: "#c0c0c0",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  color: "#fff",
+                                }}
+                              >
+                                {local.id} - {local.state}
+                              </MKTypography>
+                            </Link>
+                          </Box>
                         </Grid>
                       </Grid>
                     </Card>
