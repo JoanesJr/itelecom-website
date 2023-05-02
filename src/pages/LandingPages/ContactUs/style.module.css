@@ -1,0 +1,10 @@
+/* .responsiveImage {
+    text-decoration: none;
+} */
+
+@media screen and (min-width: 990px) and (max-width: 1200px) {
+    /* Estilos para quando a largura da tela estiver entre 990 e 1200 pixels */
+    .responsiveImage {
+        display: none
+    }
+  }

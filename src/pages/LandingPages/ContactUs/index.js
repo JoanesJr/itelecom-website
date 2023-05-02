@@ -16,6 +16,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Grid from "@mui/material/Grid";
 import CircularProgress from "@mui/material/CircularProgress";
+import styles from "./style.module.css";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -168,18 +169,20 @@ function ContactUs() {
         <DefaultNavbar routes={routes} transparent />
       </MKBox>
       <Grid container spacing={3} alignItems="center">
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} sx={{}}>
           <MKBox
             display={{ xs: "none", lg: "flex" }}
-            width="calc(100% - 2rem)"
-            height="calc(100vh - 2rem)"
+            className={styles.responsiveImage}
             borderRadius="lg"
             ml={2}
             mt={2}
             sx={{
+              width: { lg: "54rem" },
+              height: "31rem",
               backgroundImage: `url(${banner})`,
               backgroundRepet: "no-repeat",
               backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
         </Grid>
@@ -187,7 +190,7 @@ function ContactUs() {
           item
           xs={12}
           sm={10}
-          md={7}
+          md={6}
           lg={6}
           xl={4}
           ml={{ xs: "auto", lg: 6 }}
