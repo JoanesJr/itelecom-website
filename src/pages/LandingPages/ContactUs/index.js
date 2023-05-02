@@ -18,7 +18,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import styles from "./style.module.css";
-
+import { FaWhatsapp } from "react-icons/fa";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
@@ -322,9 +322,11 @@ function ContactUs() {
                       mt: 2,
                     }}
                   >
-                    <LocalPhoneSharpIcon />
+                    {ct.includes("Whatsapp") && <FaWhatsapp />}
+                    {!ct.includes("Whatsapp") && <LocalPhoneSharpIcon />}
+
                     <Typography ml={2} variant="body2">
-                      {ct}
+                      {ct.replace("(Whatsapp)", "")}
                     </Typography>
                   </Box>
                 ))}

@@ -23,7 +23,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
-import { Box, Link } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 
 // Images
 import ResponsiveEmbed from "react-responsive-embed";
@@ -31,6 +31,9 @@ import { useEffect, useState } from "react";
 
 import { getlocalizacao } from "../../../../firebase/cities/localizacao";
 import { useParams } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
+import LocalPhoneSharpIcon from "@mui/icons-material/LocalPhoneSharp";
+import EmailSharpIcon from "@mui/icons-material/EmailSharp";
 
 const controller = new AbortController();
 
@@ -62,10 +65,25 @@ function Newsletter({ social, city }) {
                 <MKTypography variant="body2">
                   <span style={{ fontWeight: "bold" }}>Endereço:</span> {address || ""}
                 </MKTypography>
-                <MKTypography variant="body2">
-                  <span style={{ fontWeight: "bold" }}>Whatsapp Suporte:</span>{" "}
-                  {social?.whatsappNumber || ""}
-                </MKTypography>
+
+                <MKBox p={3} sx={{ height: "100%" }}>
+                  {social?.whatsappNumber &&
+                    social?.whatsappNumber.split("|").map((ct) => (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          mt: 2,
+                        }}
+                      >
+                        {ct.includes("Whatsapp") && <FaWhatsapp />}
+                        {!ct.includes("Whatsapp") && <LocalPhoneSharpIcon />}
+
+                        <Typography ml={2} variant="body2">
+                          {ct.replace("(Whatsapp)", "")}
+                        </Typography>
+                      </Box>
+                    ))}
+                </MKBox>
               </Grid>
               <Grid item xs={4} sx={{ mt: 2 }}>
                 <Link href={social?.whatsapp || ""} target="_blank">

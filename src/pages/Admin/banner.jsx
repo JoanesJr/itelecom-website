@@ -55,8 +55,8 @@ export const Banner = ({ city }) => {
     setIsUploading(true);
     setImgURL("");
 
-    const storageRef = ref(storage, `images/${file.name}`);
-    const deleteRef = ref(storage, `images/${name}`);
+    const storageRef = ref(storage, `images/${file.name}-${city}`);
+    const deleteRef = ref(storage, `images/${name}-${city}`);
     deleteObject(deleteRef)
       .then(() => {})
       .catch((err) => {
