@@ -22,10 +22,17 @@ Coded by www.creative-tim.com
 export default {
   values: {
     xs: 0,
+    xs1: 400,
     sm: 576,
+    smmid: 580,
     md: 768,
+    mdmid: 823,
+    md1: 878,
     lg: 992,
+    lg1: 1000,
+    xlg: 1100,
     xl: 1200,
     xxl: 1400,
+    xxll: 1500,
   },
 };

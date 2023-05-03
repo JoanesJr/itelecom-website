@@ -126,7 +126,7 @@ function ContactUs() {
       };
 
       emailjs
-        .send("service_jeak98m", "template_rzycntd", templateParams, "FiNpDKwOyrOot-Hv3")
+        .send("service_86f0ela", "template_rzycntd", templateParams, "FiNpDKwOyrOot-Hv3")
         .then((dt) => {
           setName("");
           setMessage("");

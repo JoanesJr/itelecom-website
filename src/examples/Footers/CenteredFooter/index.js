@@ -73,7 +73,7 @@ function CenteredFooter({ company, links, socials, light, socialB }) {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <MKTypography variant="body2" color={light ? "white" : "secondary"}>
-            Copyright &copy; {year} Material by{" "}
+            Copyright &copy; {year} by{" "}
             <MKTypography
               component={Link}
               href={href}
@@ -82,7 +82,7 @@ function CenteredFooter({ company, links, socials, light, socialB }) {
               variant="body2"
               color={light ? "white" : "secondary"}
             >
-              Joanes Technology
+              Joanes Technology & Itelecom
             </MKTypography>
             .
           </MKTypography>

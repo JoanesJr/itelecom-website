@@ -90,10 +90,10 @@ function HorizontalTeamCard({
               }}
             >
               <MKTypography variant="h4" color={position.color} mb={1}>
-                {mb} MEGAS
+                {mb} MEGA
               </MKTypography>
               <MKTypography variant="h1" color="text">
-                R$ {value}
+                R$ {value},00
               </MKTypography>
               <MKTypography variant="h5" color="text">
                 por mês

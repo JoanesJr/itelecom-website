@@ -22,15 +22,19 @@ import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import wifiIcon from "../../assets/images/output-onlinegiftools.gif";
 
 // Routes
 import routes from "routes";
 
 // Images
 // import bgImage from "assets/images/banner-itelecom.png";
-import bgImage from "assets/images/banner_home_2.png";
+// import bgImage from "assets/images/banner_home_2.png";
+import bgImage from "assets/images/banner_home.jpg";
+import bgImageSmall from "assets/images/banner_home-small.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
+import { WifiIcon } from "./wifyIcon";
 
 const controller = new AbortController();
 
@@ -64,11 +68,54 @@ function Presentation() {
         sx={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "top",
+          backgroundPosition: { xs: "left top", lg: "left top" },
           display: "grid",
           placeItems: "center",
         }}
-      ></MKBox>
+      >
+        <Box>
+          <Box
+            component="img"
+            sx={{
+              position: "absolute",
+              top: {
+                xs: 30,
+                xs1: 30,
+                sm: 60,
+                smmid: 30,
+                md: 40,
+                mdmid: 50,
+                md1: 45,
+                lg: 40,
+                lg1: 50,
+                xl: 65,
+                xlg: 55,
+                xxl: 90,
+                xxll: 105,
+              },
+              left: {
+                xs: 0,
+                xs1: 0,
+                sm: 10,
+                smmid: 2,
+                md: 2,
+                mdmid: 5,
+                md1: 1,
+                lg: -1,
+                lg1: 1,
+                xl: 7,
+                xlg: 5,
+                xxl: 12,
+                xxll: 18,
+              },
+              height: { xs: 40, mdmid: 40, md1: 50, lg: 60 },
+              width: { xs: 40, mdmid: 40, md1: 50, lg: 60 },
+            }}
+            alt="wifi Icon"
+            src={wifiIcon}
+          />
+        </Box>
+      </MKBox>
 
       <Grid
         container
@@ -122,11 +169,12 @@ function Presentation() {
                   <Grid
                     item
                     sx={12}
-                    md={3}
-                    lg={3}
+                    md={6}
+                    lg={4}
+                    xxll={4}
                     sx={{
-                      ml: { xs: 0, lg: 3 },
-                      mb: { xs: 1, md: 0 },
+                      // ml: { xs: 0, lg: 3 },
+                      // mb: { xs: 1, md: 0 },
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
@@ -172,6 +220,9 @@ function Presentation() {
                             display="flex"
                             alignItems="center"
                             justifyContent="center"
+                            sx={{
+                              width: "100%",
+                            }}
                             // height={200}
                           >
                             <Link
@@ -208,10 +259,6 @@ function Presentation() {
           </MKBox>
         </Card>
       </Grid>
-
-      {/* <MKBox pt={6} px={1} mt={6}>
-        <CenteredFooter content={footerRoutes} />
-      </MKBox> */}
     </>
   );
 }
