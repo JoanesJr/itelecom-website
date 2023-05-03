@@ -27,7 +27,7 @@ export async function getPlans(city) {
 
     let arrayplans = [];
 
-    const q = query(plansRef, where("city", "==", city), orderBy("mb"));
+    const q = query(plansRef, where("city", "==", city), orderBy("mb", "asc"));
     // const q = query(plansRef, where("city", "==", city), orderBy("mb", "asc"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -37,6 +37,8 @@ export async function getPlans(city) {
         id: doc.id,
         ...doc.data(),
       };
+
+      console.log(monta);
 
       arrayplans.push(monta);
     });

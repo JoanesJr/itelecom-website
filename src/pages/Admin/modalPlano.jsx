@@ -87,7 +87,7 @@ export const ModalPlano = ({ open, handleClose, city, selectionModel, type }) =>
       const validationSchema = plannsSchema.parse({ value, mb });
       await updatePlans(
         {
-          mb: validationSchema.mb,
+          mb: Number(validationSchema.mb),
           value: validationSchema.value,
           instalacaoGratis: state.instalacaoGratis,
           image: state.image,
