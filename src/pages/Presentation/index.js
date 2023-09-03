@@ -31,6 +31,7 @@ import routes from "routes";
 // import bgImage from "assets/images/banner-itelecom.png";
 // import bgImage from "assets/images/banner_home_2.png";
 import bgImage from "assets/images/banner_home.jpg";
+import bgImageNew from "assets/images/banner-novo.png";
 import bgImageSmall from "assets/images/banner_home-small.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
@@ -66,14 +67,14 @@ function Presentation() {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url(${bgImageNew})`,
           backgroundSize: "cover",
           backgroundPosition: { xs: "left top", lg: "left top" },
           display: "grid",
           placeItems: "center",
         }}
       >
-        <Box>
+        {/* <Box>
           <Box
             component="img"
             sx={{
@@ -114,7 +115,7 @@ function Presentation() {
             alt="wifi Icon"
             src={wifiIcon}
           />
-        </Box>
+        </Box> */}
       </MKBox>
 
       <Grid
@@ -168,7 +169,7 @@ function Presentation() {
                 {locals.map((local) => (
                   <Grid
                     item
-                    sx={12}
+                    xs={12}
                     md={6}
                     lg={4}
                     xxll={4}
@@ -192,6 +193,7 @@ function Presentation() {
                         justifyContent: "center",
                         alignItems: "center",
                         backgroundColor: "#0388C5",
+                        borderRadius: 60,
                       }}
                       elevation={5}
                     >
