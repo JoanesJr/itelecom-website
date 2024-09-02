@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { SignIn, SignOut, ValidIdToken } from "../firebase/index";
-import { Navigate, useNavigate } from "react-router-dom";
+import { SignIn, SignOut } from "../firebase/index";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext({});
 
