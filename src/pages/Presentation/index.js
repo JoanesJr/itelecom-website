@@ -26,15 +26,10 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // Routes
 import routes from "routes";
 
-// Images
-// import bgImage from "assets/images/banner-itelecom.png";
-// import bgImage from "assets/images/banner_home_2.png";
-import bgImage from "assets/images/banner_home.jpg";
+
 import bgImageNew from "assets/images/banner-novo.png";
-import bgImageSmall from "assets/images/banner_home-small.png";
 import { useEffect, useState } from "react";
 import { getCities } from "../../firebase/cities/index";
-import { WifiIcon } from "./wifyIcon";
 
 const controller = new AbortController();
 
@@ -73,48 +68,6 @@ function Presentation() {
           placeItems: "center",
         }}
       >
-        {/* <Box>
-          <Box
-            component="img"
-            sx={{
-              position: "absolute",
-              top: {
-                xs: 30,
-                xs1: 30,
-                sm: 60,
-                smmid: 30,
-                md: 40,
-                mdmid: 50,
-                md1: 45,
-                lg: 40,
-                lg1: 50,
-                xl: 65,
-                xlg: 55,
-                xxl: 90,
-                xxll: 105,
-              },
-              left: {
-                xs: 0,
-                xs1: 0,
-                sm: 10,
-                smmid: 2,
-                md: 2,
-                mdmid: 5,
-                md1: 1,
-                lg: -1,
-                lg1: 1,
-                xl: 7,
-                xlg: 5,
-                xxl: 12,
-                xxll: 18,
-              },
-              height: { xs: 40, mdmid: 40, md1: 50, lg: 60 },
-              width: { xs: 40, mdmid: 40, md1: 50, lg: 60 },
-            }}
-            alt="wifi Icon"
-            src={wifiIcon}
-          />
-        </Box> */}
       </MKBox>
 
       <Grid
