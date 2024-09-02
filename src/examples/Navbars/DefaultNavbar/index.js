@@ -42,8 +42,6 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 
 // Material Kit 2 React base styles
 import breakpoints from "assets/theme/base/breakpoints";
-import { Typography } from "@mui/material";
-import { Dashboard } from "@mui/icons-material";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import SendSharpIcon from "@mui/icons-material/SendSharp";
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
