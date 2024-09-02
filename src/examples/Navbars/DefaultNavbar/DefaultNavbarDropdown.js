@@ -20,8 +20,6 @@ import PropTypes from "prop-types";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 // @mui material components
-import Collapse from "@mui/material/Collapse";
-import Icon from "@mui/material/Icon";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";

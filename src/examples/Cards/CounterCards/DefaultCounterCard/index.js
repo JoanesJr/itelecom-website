@@ -19,7 +19,6 @@ import { BiSupport } from "react-icons/bi";
 import { MdAttachMoney, MdMonitorHeart } from "react-icons/md";
 
 // react-countup component
-import CountUp from "react-countup";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
